@@ -1,0 +1,11 @@
+.room-join:hover,.room-join~icon{
+    cursor: pointer;
+   
+}
+.btn-register{
+    opacity: 0.5;
+}
+.btn-register:hover{
+    opacity: 1;
+}
+
