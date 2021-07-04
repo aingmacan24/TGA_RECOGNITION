@@ -6,7 +6,8 @@ class Room_c extends CI_Controller {
     public function index()
     {
         $data['title']="Dashboard";
-        $data['room']=$this->Room_model->get_all();
+        $id_scheduler=$this->session->userdata('id_scheduler');
+        $data['room']=$this->db->get_where('tb_scheduler',['id_scheduler'=>$id_scheduler])->result();
         view('content.room.index',$data);
 
     }

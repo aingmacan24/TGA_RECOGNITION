@@ -53,8 +53,14 @@ class Login extends CI_Controller
         $data['email_sheduler']=$this->input->post("email_sheduler");
         $password=$this->input->post('password');
         $data['password_sheduler']=password_hash($password,PASSWORD_BCRYPT);
-        $register=$this->Scheduler->insert($data);
-        if($register){
+        $this->form_validation->set_rules('name_sheduler',get_msg('name_sheduler'),'required');
+        $this->form_validation->set_rules('password',get_msg('password'),'required|min_length[8]|max_length[25]|callback_check_strong_password');
+        $this->form_validation->set_rules('password_confirm',get_msg('password_confirm'),'trim|required|matches[password]');
+        $this->form_validation->set_rules('email_sheduler',get_msg('email_sheduler'),'required|valid_email|is_unique[tb_scheduler.email_sheduler]');
+        $this->form_validation->set_rules('nickname_scheduler',get_msg('nickname_scheduler'),'required');
+        $this->Scheduler->skip_validation();
+        if ($this->form_validation->run()) {
+            $register=$this->Scheduler->insert($data);
             $this->modul->alert(get_msg("register_success"),"berhasil","/login");
         }else{
             $this->modul->alert('f_error');
@@ -64,6 +70,14 @@ class Login extends CI_Controller
       
             view('content.home_register');
        
+    }
+    public function check_strong_password($str)
+    {
+       if (preg_match('#[0-9]#', $str) && preg_match('#[a-zA-Z]#', $str)) {
+         return TRUE;
+       }
+       $this->form_validation->set_message('check_strong_password', 'Bidang kata sandi harus berisi setidaknya satu huruf dan satu digit serta.');
+       return FALSE;
     }
     function logout(){
         $this->session->sess_destroy();
