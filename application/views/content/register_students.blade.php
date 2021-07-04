@@ -202,6 +202,7 @@
             success: function(response){
               var foto=JSON.parse(response);
               $("#result-image").attr("src","<?=base_url('uploads/IMG/')?>"+foto.foto);
+              $("#val-image").val(foto.foto);
               $('video').css("display","none");
               $(".display-image").css("display","block");
               webcam.stop();
