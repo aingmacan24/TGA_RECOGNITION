@@ -113,11 +113,15 @@ class Sistem extends CI_Controller
         // link untuk post data ke python server di ip yang sesuai
         $link    = 'http://'.$localIP.':80/';
         $url     ='127.0.0.1:2528/checkFace';
-        $url     ='127.0.0.1:2528/checkFace';
+        // $url     ='127.0.0.1:2528/Facedetection';
         // data yang di kirim
         $face    =array(
                     'Face_Know'=>$link.'aldi/uploads/IMG/'.str_replace(' ','',$user->picture_face_user),
                     'Face_Unknow'=>$link.'aldi/uploads/IMG/'.str_replace(' ','',$picture_unknow));
+        // $face    =array(
+        //             'Face_Know'=>$this->get_datalatih($id_user),
+        //             'Face_Unknow'=>$link.'aldi/uploads/IMG/'.str_replace(' ','',$picture_unknow),
+        //             'Url'=>$link);
         // kirim dengan method post dengan menggunakan curl
         $data=$this->postCURL($url,$face);
         // status dari yang sudah check oleh sistem
@@ -131,9 +135,10 @@ class Sistem extends CI_Controller
         $data_latih=$this->db->query($query)->result();
         $str_data_latih='';
         foreach($data_latih as $item){
-            $str_data_latih.=$item->picture_user.'^';
+            $ganti_space=str_replace(' ','',$item->picture_user);
+            $str_data_latih.=$ganti_space.'^';
         }
-        return $str_data_latih;
+        return substr($str_data_latih,0,-1);
     }
     // curl post 
     public function postCURL($_url, $_param){
