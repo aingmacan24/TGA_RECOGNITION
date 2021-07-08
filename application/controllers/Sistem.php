@@ -77,6 +77,7 @@ class Sistem extends CI_Controller
 
    /**
     * @function cari semua dengan id user dan code room yang diberi dosen untuk check apakah pernah dua kali mengabsen
+    * beneran
     */
     function absent_now(){
         $picture_unknow=$this->input->post('picture_face_user');
