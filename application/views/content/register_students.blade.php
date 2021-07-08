@@ -141,7 +141,7 @@
 
              <button type="button" id="capture-btn" class="btn btn-sm btn-secondary">{{ get_msg("picture_face_user") }}</button>
              <input type="file" name="" class="upload" id="but_upload" >
-             <a href="{{ base_url('register/students') }}"  class="btn ml-2 btn-sm btn-danger" >Reset</a>
+             <button class="btn ml-2 btn-sm btn-danger" id="reset_btn" >Reset</button>
             <div class="display-image">
               <img src="#" alt="" id="result-image" width="100%" height="100%">
             </div>
@@ -176,7 +176,11 @@
         const webcamElement = document.getElementById('webcam');
         const canvasElement = document.getElementById('canvas');
         const webcam = new Webcam(webcamElement, 'user', canvasElement, null);
-
+        $("#reset_btn").click(()=>{
+          webcam.start();
+          $(".display-image").css("display","none");
+          $("#val-image").val('');
+        });
         webcam.start();
         var btn_capture=$("#capture-btn");
         btn_capture.click(()=>{
