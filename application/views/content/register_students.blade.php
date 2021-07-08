@@ -179,6 +179,7 @@
         $("#reset_btn").click(()=>{
           webcam.start();
           $(".display-image").css("display","none");
+          $('video').css("display","block");
           $("#val-image").val('');
         });
         webcam.start();
