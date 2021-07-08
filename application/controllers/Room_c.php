@@ -7,7 +7,7 @@ class Room_c extends CI_Controller {
     {
         $data['title']="Dashboard";
         $id_scheduler=$this->session->userdata('id_scheduler');
-        $data['room']=$this->db->get_where('tb_scheduler',['id_scheduler'=>$id_scheduler])->result();
+        $data['room']=$this->db->get_where('tb_room',['id_scheduler'=>$id_scheduler])->result();
         view('content.room.index',$data);
 
     }
