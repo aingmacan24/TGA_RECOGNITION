@@ -75,6 +75,9 @@ class Sistem extends CI_Controller
         // if true redirect ke halaman absen
     }
 
+   /**
+    * @function cari semua dengan id user dan code room yang diberi dosen untuk check apakah pernah dua kali mengabsen
+    */
     function absent_now(){
         $picture_unknow=$this->input->post('picture_face_user');
         $id_user=$this->session->userdata('id');
@@ -100,6 +103,7 @@ class Sistem extends CI_Controller
         }
       
     }
+
     function check_face($picture_unknow,$id_user){
         if(empty($picture_unknow)){
             $this->modul->alert("Foto diri harus ada",'gagal');
