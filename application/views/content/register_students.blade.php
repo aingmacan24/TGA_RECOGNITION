@@ -67,10 +67,11 @@
                 <span class="fas fa-user"></span>
               </div>
             </div>
+            <div class="invalid-feedback">
+              {{ form_e('identity_user') }}
           </div>
-          <div class="invalid-feedback">
-            {{ form_e('identity_user') }}
-        </div>
+          </div>
+          
           <div class="input-group mb-3">
             <input type="text" class="form-control  {{ form_e('name_user') ? 'is-invalid' : '' }}" name="name_user" placeholder="{{ get_msg("name_user") }}">
             <div class="input-group-append">
