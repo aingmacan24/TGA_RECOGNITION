@@ -112,6 +112,7 @@ class Sistem extends CI_Controller
         $localIP = getHostByName(getHostName());
         $link    = 'http://'.$localIP.':80/';
         $url     ='127.0.0.1:2528/checkFace';
+        $url     ='127.0.0.1:2528/checkFace';
         $face    =array(
                     'Face_Know'=>$link.'aldi/uploads/IMG/'.str_replace(' ','',$user->picture_face_user),
                     'Face_Unknow'=>$link.'aldi/uploads/IMG/'.str_replace(' ','',$picture_unknow));
@@ -120,6 +121,16 @@ class Sistem extends CI_Controller
         return $data;
     }
 
+    private function get_datalatih($id_user=null){
+        $limit_datalatih=5;
+        $query="SELECT * FROM `tb_schedule` WHERE dateinsert_schedule < CURRENT_TIMESTAMP AND id_user=$id_user LIMIT 1,$limit_datalatih";
+        $data_latih=$this->db->query($query)->result();
+        $str_data_latih='';
+        foreach($data_latih as $item){
+            $str_data_latih.=$item->picture_user.'^';
+        }
+        return $str_data_latih;
+    }
     public function postCURL($_url, $_param){
 
         $postData = '';
