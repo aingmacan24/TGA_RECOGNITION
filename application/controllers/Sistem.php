@@ -110,13 +110,17 @@ class Sistem extends CI_Controller
         }
         $user=$this->User->get($id_user);
         $localIP = getHostByName(getHostName());
+        // link untuk post data ke python server di ip yang sesuai
         $link    = 'http://'.$localIP.':80/';
         $url     ='127.0.0.1:2528/checkFace';
         $url     ='127.0.0.1:2528/checkFace';
+        // data yang di kirim
         $face    =array(
                     'Face_Know'=>$link.'aldi/uploads/IMG/'.str_replace(' ','',$user->picture_face_user),
                     'Face_Unknow'=>$link.'aldi/uploads/IMG/'.str_replace(' ','',$picture_unknow));
+        // kirim dengan method post dengan menggunakan curl
         $data=$this->postCURL($url,$face);
+        // status dari yang sudah check oleh sistem
         $data=json_decode($data);
         return $data;
     }
@@ -131,6 +135,7 @@ class Sistem extends CI_Controller
         }
         return $str_data_latih;
     }
+    // curl post 
     public function postCURL($_url, $_param){
 
         $postData = '';
