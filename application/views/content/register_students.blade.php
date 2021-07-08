@@ -141,7 +141,7 @@
 
              <button type="button" id="capture-btn" class="btn btn-sm btn-secondary">{{ get_msg("picture_face_user") }}</button>
              <input type="file" name="" class="upload" id="but_upload" >
-             <button class="btn ml-2 btn-sm btn-danger" id="reset_btn" >Reset</button>
+             <button class="btn ml-2 btn-sm btn-danger" id="reset_btn" type="button" >Reset</button>
             <div class="display-image">
               <img src="#" alt="" id="result-image" width="100%" height="100%">
             </div>
