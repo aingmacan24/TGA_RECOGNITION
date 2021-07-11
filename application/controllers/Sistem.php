@@ -260,7 +260,7 @@ class Sistem extends CI_Controller
             $data['code_room'] = $this->generate_code();
             $action = $this->Room_model->insert($data);
             $message = "Success Inserting Data";
-            if ($action==0) {
+            if ($action) {
                 $this->modul->alert($message, 'berhasil', $redirect);
             } else {
                 $this->modul->alert('f_error');
